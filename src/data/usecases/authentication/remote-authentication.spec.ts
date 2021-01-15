@@ -1,6 +1,7 @@
 import faker from 'faker'
 import { RemoteAuthentication } from './remote-authentication'
 import { HttpPostClientSpy } from '../../test/mock-http-client'
+import { mockAuthentication } from '../../../domain/test/mock-authentication'
 
 type SystemUnderTestTypes = {
   systemUnderTest: RemoteAuthentication
@@ -24,9 +25,21 @@ describe('RemoteAuthentication', () => {
     const { systemUnderTest, httpPostClientSpy } = makeSystemUnderTest(url)
 
     // when
-    await systemUnderTest.auth()
+    await systemUnderTest.auth(mockAuthentication())
 
     // then
     expect(httpPostClientSpy.url).toBe(url)
+  })
+
+  test('should call HttpPostClient with correct body', async () => {
+    // given
+    const { systemUnderTest, httpPostClientSpy } = makeSystemUnderTest()
+    const authenticationParamsMock = mockAuthentication()
+
+    // when
+    await systemUnderTest.auth(authenticationParamsMock)
+
+    // then
+    expect(httpPostClientSpy.body).toEqual(authenticationParamsMock)
   })
 })
