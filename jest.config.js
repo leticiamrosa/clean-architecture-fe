@@ -12,7 +12,7 @@ module.exports = {
     '.+\\.(ts|tsx)$': 'ts-jest'
   },
   moduleNameMapper: {
-    '@/(.*)': '<rootDir>/src/$1',
-    '\\.scss$': 'identity-obj-proxy'
+    "@domain/(.*)": "<rootDir>/src/domain/$1",
+    "@data/(.*)": "<rootDir>/src/data/$1",
   }
 }
