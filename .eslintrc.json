@@ -1,12 +1,19 @@
-{
-    "extends": [
-      "standard-with-typescript"
-    ],
-    "parserOptions": {
-      "project": "./tsconfig-eslint.json"
-    },
-    "settings": {
 
+{
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+    "extends": [
+      "standard-with-typescript",
+      "plugin:react/recommended"
+    ],
+    "plugins": ["react"],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+      "project": "./tsconfig-eslint.json",
+      "createDefaultProgram": true
     },
     "rules": {
       "@typescript-eslint/consistent-type-definitions": "off",
@@ -19,6 +26,8 @@
       "import/export": "off",
       "@typescript-eslint/camelcase": "off",
       "@typescript-eslint/no-unused-vars": "off",
-      "@typescript-eslint/no-unused-vars-experimental": "error"
+      "@typescript-eslint/no-unused-vars-experimental": "error",
+      "react/jsx-uses-react": "error",
+      "react/jsx-uses-vars": "error"
     }
   }
