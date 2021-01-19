@@ -2,6 +2,8 @@ import faker from 'faker'
 import { RemoteAuthentication } from '@data/usecases/authentication/remote-authentication'
 import { HttpPostClientSpy } from '@data/test/mock-http-client'
 import { mockAuthentication } from '@domain/test/mock-authentication'
+import { InvalidCredentialsError } from '@domain/errors/invalid-credentials-error'
+import { HttpStatusCode } from '@data/protocols/http/http-response'
 
 type SystemUnderTestTypes = {
   systemUnderTest: RemoteAuthentication
@@ -41,5 +43,19 @@ describe('RemoteAuthentication', () => {
 
     // then
     expect(httpPostClientSpy.body).toEqual(authenticationParamsMock)
+  })
+
+  test('should throw InvalidCredentialsError if HttpPostClient returns 401', async () => {
+    // given
+    const { systemUnderTest, httpPostClientSpy } = makeSystemUnderTest()
+    httpPostClientSpy.response = {
+      statusCode: HttpStatusCode.unathorized
+    }
+
+    // when
+    const result = systemUnderTest.auth(mockAuthentication())
+
+    // then
+    await expect(result).rejects.toThrow(new InvalidCredentialsError())
   })
 })
