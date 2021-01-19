@@ -14,7 +14,8 @@
       "baseUrl": ".",
       "paths": {
         "@domain/*": ["./src/domain/*"],
-        "@data/*": ["./src/data/*"]
+        "@data/*": ["./src/data/*"],
+        "@infra/*": ["./src/infra/*"]
       },
       "allowJs": true,
       "resolveJsonModule": true
