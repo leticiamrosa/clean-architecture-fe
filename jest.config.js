@@ -1,7 +1,10 @@
 module.exports = {
   roots: ['<rootDir>/src'],
   collectCoverageFrom: [
-    '<rootDir>/src/**/*.{ts,tsx}'
+    '<rootDir>/src/**/*.{ts,tsx}',
+    '!<rootDir>/src/main/**/*',
+    '!<rootDir>/src/**/index.ts',
+    '!**/*.d.ts'
   ],
   coverageDirectory: 'coverage',
   testPathIgnorePatterns: [
@@ -14,6 +17,7 @@ module.exports = {
   moduleNameMapper: {
     '@domain/(.*)': '<rootDir>/src/domain/$1',
     '@data/(.*)': '<rootDir>/src/data/$1',
-    '@infra/(.*)': '<rootDir>/src/infra/$1'
+    '@infra/(.*)': '<rootDir>/src/infra/$1',
+    '\\.scss$': 'identity-obj-proxy'
   }
 }

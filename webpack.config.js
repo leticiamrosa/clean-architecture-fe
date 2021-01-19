@@ -1,4 +1,5 @@
 const path = require('path')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 module.exports = {
@@ -10,12 +11,31 @@ module.exports = {
     filename: 'bundle.js'
   },
   resolve: {
-    extensions: ['.ts', '.tsx', '.js'],
+    extensions: ['.ts', '.tsx', '.js', 'scss'],
     alias: {
       '@domain/*': path.join(__dirname, 'src/domain/*'),
       '@data/*': path.join(__dirname, 'src/data/*'),
       '@infra/*': path.join(__dirname, 'src/infra/*')
     }
+  },
+  module: {
+    rules: [{
+      test: /\.ts(x?)$/,
+      loader: 'ts-loader',
+      exclude: /node_modules/
+    }, {
+      test: /\.scss$/,
+      use: [{
+        loader: MiniCssExtractPlugin.loader
+      }, {
+        loader: 'css-loader',
+        options: {
+          modules: true
+        }
+      }, {
+        loader: 'sass-loader'
+      }]
+    }]
   },
   devServer: {
     contentBase: './public',
