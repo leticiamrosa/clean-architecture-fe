@@ -16,7 +16,9 @@
         "@domain/*": ["./src/domain/*"],
         "@data/*": ["./src/data/*"],
         "@infra/*": ["./src/infra/*"],
-        "@presentation/*": ["./src/presentation/*"]
+        "@presentation/*": ["./src/presentation/*"],
+        "@components/*": ["./src/presentation/components/*"],
+        "@styles/*": ["./src/presentation/styles/*"]
       },
       "allowJs": true,
       "resolveJsonModule": true

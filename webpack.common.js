@@ -14,7 +14,9 @@ module.exports = {
       '@domain': path.join(__dirname, 'src/domain'),
       '@data': path.join(__dirname, 'src/data'),
       '@infra': path.join(__dirname, 'src/infra'),
-      '@presentation': path.join(__dirname, 'src/presentation')
+      '@presentation': path.join(__dirname, 'src/presentation'),
+      '@components': path.join(__dirname, 'src/presentation/components'),
+      '@styles': path.join(__dirname, 'src/presentation/styles')
     }
   },
   plugins: [
