@@ -1,7 +1,7 @@
 import React from 'react'
-import HeaderLogin from '@components/header/header-login/header-login.web'
-import Footer from '@components/footer/footer.web'
-import Spinner from '@components/spinner/spinner.web'
+import HeaderLogin from '@presentation/components/common/header/header-login/header-login.web'
+import Footer from '@presentation/components/common/footer/footer.web'
+import Spinner from '@presentation/components/common/spinner/spinner.web'
 import Styles from './login.styles.scss'
 
 const Login: React.FC = () => {
