@@ -15,7 +15,8 @@
       "paths": {
         "@domain/*": ["./src/domain/*"],
         "@data/*": ["./src/data/*"],
-        "@infra/*": ["./src/infra/*"]
+        "@infra/*": ["./src/infra/*"],
+        "@presentation/*": ["./src/presentation/*"]
       },
       "allowJs": true,
       "resolveJsonModule": true

@@ -1,50 +1,21 @@
 const path = require('path')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 module.exports = {
-  mode: 'development',
   entry: './src/main/index.tsx',
   output: {
-    path: path.join(__dirname, 'public/js'),
-    publicPath: '/public/js',
-    filename: 'bundle.js'
+    path: path.join(__dirname, 'dist'),
+    filename: 'main-bundle-[hash].js',
+    publicPath: '/'
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js', 'scss'],
     alias: {
-      '@domain/*': path.join(__dirname, 'src/domain/*'),
-      '@data/*': path.join(__dirname, 'src/data/*'),
-      '@infra/*': path.join(__dirname, 'src/infra/*')
+      '@domain': path.join(__dirname, 'src/domain'),
+      '@data': path.join(__dirname, 'src/data'),
+      '@infra': path.join(__dirname, 'src/infra'),
+      '@presentation': path.join(__dirname, 'src/presentation')
     }
-  },
-  module: {
-    rules: [{
-      test: /\.ts(x?)$/,
-      loader: 'ts-loader',
-      exclude: /node_modules/
-    }, {
-      test: /\.scss$/,
-      use: [{
-        loader: MiniCssExtractPlugin.loader
-      }, {
-        loader: 'css-loader',
-        options: {
-          modules: true
-        }
-      }, {
-        loader: 'sass-loader'
-      }]
-    }]
-  },
-  devServer: {
-    contentBase: './public',
-    writeToDisk: true,
-    historyApiFallback: true
-  },
-  externals: {
-    react: 'React',
-    'react-dom': 'ReactDom'
   },
   plugins: [
     new CleanWebpackPlugin()
