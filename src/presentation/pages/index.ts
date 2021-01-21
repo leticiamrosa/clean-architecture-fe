@@ -1,1 +1,1 @@
-export { default as Login } from './login/login.web'
+export { default as Login } from './login/login.page'
