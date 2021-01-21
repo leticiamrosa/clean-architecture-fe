@@ -1,8 +1,10 @@
 import React from 'react'
-import HeaderLogin from '@presentation/components/common/header/header-login/header-login.web'
-import Footer from '@presentation/components/common/footer/footer.web'
-import InputText from '@presentation/components/common/input/input-text/input-text.web'
-import Spinner from '@presentation/components/common/spinner/spinner.web'
+import {
+  Footer,
+  HeaderLogin,
+  InputText,
+  Error
+} from '@components/common'
 import Styles from './login.styles.scss'
 
 const Login: React.FC = () => {
@@ -19,10 +21,7 @@ const Login: React.FC = () => {
         <button className={Styles.submit} type="submit">Enviar</button>
         <span className={Styles.link}>Criar conta</span>
 
-        <div className={Styles.errorWrapper}>
-          <Spinner className={Styles.spinner}/>
-          <span className={Styles.error}>Erro</span>
-        </div>
+        <Error />
 
       </form>
 
