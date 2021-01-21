@@ -18,7 +18,8 @@
         "@infra/*": ["./src/infra/*"],
         "@presentation/*": ["./src/presentation/*"],
         "@components/*": ["./src/presentation/components/*"],
-        "@styles/*": ["./src/presentation/styles/*"]
+        "@styles/*": ["./src/presentation/styles/*"],
+        "@main/*": ["./src/main/*"]
       },
       "allowJs": true,
       "resolveJsonModule": true
