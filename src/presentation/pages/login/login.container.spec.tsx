@@ -1,19 +1,31 @@
 import React from 'react'
-import { render } from '@testing-library/react'
+import { render, RenderResult } from '@testing-library/react'
 import Login from './login.container'
+
+type SutTypes = {
+  sut: RenderResult
+}
+
+const makeSut = (): SutTypes => {
+  const sut = render(<Login />)
+
+  return {
+    sut
+  }
+}
 
 describe('Login Container', () => {
   test('should start with initial state', () => {
     // given
-    const { getByTestId } = render(<Login />)
+    const { sut } = makeSut()
 
     // when
-    const errorWrapper = getByTestId('error-wrapper')
-    const submitButton = getByTestId('button-submit') as HTMLButtonElement
-    const inputEmail = getByTestId('input-email')
-    const inputPassword = getByTestId('input-password')
-    const inputEmailStatus = getByTestId('input-email-status')
-    const inputPasswordStatus = getByTestId('input-password-status')
+    const errorWrapper = sut.getByTestId('error-wrapper')
+    const submitButton = sut.getByTestId('button-submit') as HTMLButtonElement
+    const inputEmail = sut.getByTestId('input-email')
+    const inputPassword = sut.getByTestId('input-password')
+    const inputEmailStatus = sut.getByTestId('input-email-status')
+    const inputPasswordStatus = sut.getByTestId('input-password-status')
 
     // expect
     expect(errorWrapper.childElementCount).toBe(0)
