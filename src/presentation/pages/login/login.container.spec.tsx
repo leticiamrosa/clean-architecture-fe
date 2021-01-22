@@ -1,24 +1,12 @@
 import React from 'react'
-import { fireEvent, render, RenderResult } from '@testing-library/react'
-import Validation from '@presentation/protocols/validation'
+import { fireEvent, render, RenderResult, cleanup } from '@testing-library/react'
+import { ValidationSpy } from '@presentation/tests/'
 import Login from './login.container'
 
 type SutTypes = {
   sut: RenderResult
   validationSpy: ValidationSpy
 }
-
-class ValidationSpy implements Validation {
-  errorMessage: string;
-  fieldName: string
-  fieldValue: string
-
-  validate (fieldName: string, fieldValue: string): string {
-    this.fieldName = fieldName
-    this.fieldValue = fieldValue
-    return this.errorMessage
-  };
-};
 
 const makeSut = (): SutTypes => {
   const validationSpy = new ValidationSpy()
@@ -31,6 +19,8 @@ const makeSut = (): SutTypes => {
 }
 
 describe('Login Container', () => {
+  afterEach(cleanup)
+
   test('should start with initial state', () => {
     // given
     const { sut } = makeSut()
