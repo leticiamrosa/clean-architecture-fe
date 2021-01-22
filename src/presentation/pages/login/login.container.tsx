@@ -1,27 +1,36 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Login from './login.web'
 import Context from '@components/contexts/form-context/form-context'
+import Validation from '@presentation/protocols/validation'
 
-const LoginContainer: React.FC = () => {
-  const [state] = useState({
+type Props = {
+  validation: Validation
+};
+
+const LoginContainer: React.FC<Props> = ({ validation }: Props) => {
+  const [state, setState] = useState({
     isLoading: false,
-    errorMessage: ''
+    email: '',
+    password: '',
+    error: {
+      email: {
+        error: 'Campo obrigatório',
+        message: ''
+      },
+      password: {
+        error: 'Campo obrigatório',
+        message: ''
+      },
+      defaultMessage: ''
+    }
   })
 
-  const [errorState] = useState({
-    email: {
-      error: 'Campo obrigatório',
-      message: ''
-    },
-    password: {
-      error: 'Campo obrigatório',
-      message: ''
-    },
-    defaultMessage: ''
-  })
+  useEffect(() => {
+    validation.validate({ email: state.email })
+  }, [state.email])
 
   return (
-    <Context.Provider value={{ state, errorState }}>
+    <Context.Provider value={{ state, setState }}>
       <Login />
     </Context.Provider>
   )
