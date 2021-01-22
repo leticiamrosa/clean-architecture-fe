@@ -29,6 +29,10 @@ const LoginContainer: React.FC<Props> = ({ validation }: Props) => {
     validation.validate({ email: state.email })
   }, [state.email])
 
+  useEffect(() => {
+    validation.validate({ password: state.password })
+  }, [state.password])
+
   return (
     <Context.Provider value={{ state, setState }}>
       <Login />
