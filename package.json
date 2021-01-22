@@ -5,11 +5,11 @@
   "main": "index.js",
   "scripts": {
     "dev:base": "webpack-dev-server --config webpack.dev.js",
-    "dev": "npm run dev:base -- --open",
+    "dev": "yarn dev:base -- --open",
     "test": "jest --passWithNoTests --no-cache --runInBand",
-    "test:watch": "npm test -- --watch",
-    "test:staged": "npm test -- --findRelatedTests",
-    "test:ci": "npm test -- --coverage"
+    "test:watch": "yarn test -- --watch",
+    "test:staged": "yarn test -- --findRelatedTests",
+    "test:ci": "yarn test -- --coverage"
   },
   "keywords": [],
   "author": "leticiamrosa",
