@@ -10,10 +10,12 @@ type SutTypes = {
 
 class ValidationSpy implements Validation {
   errorMessage: string;
-  input: object
+  fieldName: string
+  fieldValue: string
 
-  validate (input: object): string {
-    this.input = input
+  validate (fieldName: string, fieldValue: string): string {
+    this.fieldName = fieldName
+    this.fieldValue = fieldValue
     return this.errorMessage
   };
 };
@@ -41,7 +43,7 @@ describe('Login Container', () => {
     const inputEmailStatus = sut.getByTestId('input-email-status')
     const inputPasswordStatus = sut.getByTestId('input-password-status')
 
-    // expect
+    // then
     expect(errorWrapper.childElementCount).toBe(0)
     expect(submitButton.disabled).toBe(true)
     expect(inputEmail.title).toBe('Campo obrigatório')
@@ -62,10 +64,9 @@ describe('Login Container', () => {
       }
     })
 
-    // expect
-    expect(validationSpy.input).toEqual({
-      email: 'any_email'
-    })
+    // then
+    expect(validationSpy.fieldName).toBe('email')
+    expect(validationSpy.fieldValue).toBe('any_email')
   })
 
   test('should call validation with correct value password', () => {
@@ -80,9 +81,8 @@ describe('Login Container', () => {
       }
     })
 
-    // expect
-    expect(validationSpy.input).toEqual({
-      password: 'any_password'
-    })
+    // then
+    expect(validationSpy.fieldName).toBe('password')
+    expect(validationSpy.fieldValue).toBe('any_password')
   })
 })
