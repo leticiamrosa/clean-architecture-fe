@@ -27,11 +27,20 @@ const LoginContainer: React.FC<Props> = ({ validation }: Props) => {
 
   const isValid = !!state.emailError || !!state.passwordError
 
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
+    event.preventDefault()
+    console.log(event)
+    setState({
+      ...state,
+      isLoading: true
+    })
+  }
+
   return (
     <Context.Provider value={{ state, setState }}>
       <Login
         isValid={isValid}
-        isLoading={state.isLoading}
+        handleSubmit={handleSubmit}
       />
     </Context.Provider>
   )

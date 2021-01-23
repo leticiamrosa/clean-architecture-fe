@@ -9,23 +9,23 @@ import Styles from './login.styles.scss'
 
 type Props = {
   isValid: boolean
-  isLoading: boolean
+  handleSubmit: (event: React.FormEvent<HTMLFormElement>) => void
 }
 
 const Login: React.FC<Props> = ({
   isValid,
-  isLoading
+  handleSubmit
 }: Props) => {
   return (
     <div className={Styles.login}>
 
       <HeaderLogin />
 
-      <form className={Styles.form}>
+      <form className={Styles.form} onSubmit={(e) => handleSubmit(e)}>
         <h2>Login</h2>
         <InputText data-testid="input-email" type="email" name="email" placeholder="Digite seu e-mail"/>
         <InputText data-testid="input-password" type="password" name="password" placeholder="Digite sua senha"/>
-        <button data-testid="button-submit" disabled={isValid || isLoading} className={Styles.submit} type="submit">Enviar</button>
+        <button data-testid="button-submit" disabled={isValid} className={Styles.submit} type="submit">Enviar</button>
         <span className={Styles.link}>Criar conta</span>
         <Error />
       </form>
