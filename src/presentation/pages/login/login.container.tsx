@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import Login from './login.web'
 import Context from '@components/contexts/form-context/form-context'
+import { Authentication } from '@domain/usecases'
 import Validation from '@presentation/protocols/validation'
 
 type Props = {
   validation?: Validation
+  authentication?: Authentication
 };
 
-const LoginContainer: React.FC<Props> = ({ validation }: Props) => {
+const LoginContainer: React.FC<Props> = ({ validation, authentication }: Props) => {
   const [state, setState] = useState({
     isLoading: false,
     email: '',
@@ -27,12 +29,16 @@ const LoginContainer: React.FC<Props> = ({ validation }: Props) => {
 
   const isValid = !!state.emailError || !!state.passwordError
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
     event.preventDefault()
-    console.log(event)
     setState({
       ...state,
       isLoading: true
+    })
+
+    await authentication.auth({
+      email: state.email,
+      password: state.password
     })
   }
 
