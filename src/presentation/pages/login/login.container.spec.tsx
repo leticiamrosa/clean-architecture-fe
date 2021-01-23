@@ -41,7 +41,7 @@ describe('Login Container', () => {
 
       // then
       expect(errorWrapper.childElementCount).toBe(0)
-      expect(submitButton.disabled).toBe(true)
+      expect(submitButton.disabled).toBeTruthy()
       expect(inputEmailStatus.title).toBe(validationError)
       expect(inputEmailStatus.textContent).toBe('🔴')
       expect(inputPasswordStatus.title).toBe(validationError)
@@ -130,7 +130,7 @@ describe('Login Container', () => {
       expect(inputPasswordStatus.textContent).toBe('🟢')
     })
 
-    test('shouw enable submit button when the form is valid', () => {
+    test('show enable submit button when the form is valid', () => {
       // given
       const { sut } = makeSut()
       const email = faker.internet.email()
@@ -153,6 +153,34 @@ describe('Login Container', () => {
 
       // then
       expect(submitButton.disabled).toBeFalsy()
+    })
+
+    test('should show spinner on submit', () => {
+      // given
+      const { sut } = makeSut()
+      const email = faker.internet.email()
+      const password = faker.internet.password()
+      const inputEmail = sut.getByTestId('input-email')
+      const inputPassword = sut.getByTestId('input-password')
+      const submitButton = sut.getByTestId('button-submit') as HTMLButtonElement
+
+      // when
+      fireEvent.input(inputEmail, {
+        target: {
+          value: email
+        }
+      })
+      fireEvent.input(inputPassword, {
+        target: {
+          value: password
+        }
+      })
+      fireEvent.click(submitButton)
+      const spinner = sut.getByTestId('spinner')
+
+      // then
+      expect(submitButton.disabled).toBeFalsy()
+      expect(spinner).toBeTruthy()
     })
   })
 })
