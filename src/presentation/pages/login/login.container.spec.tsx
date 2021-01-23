@@ -86,6 +86,26 @@ describe('Login Container', () => {
   })
 
   describe('when the validation succeeds', () => {
+    test('should show valid email state if validation succeeds', () => {
+      // given
+      const { sut, validationStub } = makeSut()
+      const email = faker.internet.email()
+      const inputEmail = sut.getByTestId('input-email')
+      const inputEmailStatus = sut.getByTestId('input-email-status')
+
+      // when
+      validationStub.errorMessage = null
+      fireEvent.input(inputEmail, {
+        target: {
+          value: email
+        }
+      })
+
+      // then
+      expect(inputEmailStatus.title).toBe('')
+      expect(inputEmailStatus.textContent).toBe('🟢')
+    })
+
     test('should show valid password state if validation succeeds', () => {
       // given
       const { sut, validationStub } = makeSut()
