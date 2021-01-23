@@ -86,7 +86,7 @@ describe('Login Container', () => {
   })
 
   describe('when the validation succeeds', () => {
-    test('should show valid email state if validation succeeds', () => {
+    test('should show valid email state when the validation is succeeds', () => {
       // given
       const { sut, validationStub } = makeSut()
       const email = faker.internet.email()
@@ -106,7 +106,7 @@ describe('Login Container', () => {
       expect(inputEmailStatus.textContent).toBe('🟢')
     })
 
-    test('should show valid password state if validation succeeds', () => {
+    test('should show valid password state when the validation is succeeds', () => {
       // given
       const { sut, validationStub } = makeSut()
       const password = faker.internet.password()
@@ -124,6 +124,32 @@ describe('Login Container', () => {
       // then
       expect(inputPasswordStatus.title).toBe('')
       expect(inputPasswordStatus.textContent).toBe('🟢')
+    })
+
+    test('shouw enable submit button when the form is valid', () => {
+      // given
+      const { sut, validationStub } = makeSut()
+      const email = faker.internet.email()
+      const password = faker.internet.password()
+      const inputEmail = sut.getByTestId('input-email')
+      const inputPassword = sut.getByTestId('input-password')
+      const submitButton = sut.getByTestId('button-submit') as HTMLButtonElement
+
+      // when
+      validationStub.errorMessage = null
+      fireEvent.input(inputEmail, {
+        target: {
+          value: email
+        }
+      })
+      fireEvent.input(inputPassword, {
+        target: {
+          value: password
+        }
+      })
+
+      // then
+      expect(submitButton.disabled).toBeFalsy()
     })
   })
 })
