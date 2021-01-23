@@ -11,6 +11,8 @@ type SutTypes = {
 
 const makeSut = (): SutTypes => {
   const validationSpy = new ValidationSpy()
+  validationSpy.errorMessage = faker.random.words()
+
   const sut = render(<Login validation={validationSpy}/>)
 
   return {
@@ -24,22 +26,20 @@ describe('Login Container', () => {
 
   test('should start with initial state', () => {
     // given
-    const { sut } = makeSut()
+    const { sut, validationSpy } = makeSut()
 
     // when
     const errorWrapper = sut.getByTestId('error-wrapper')
     const submitButton = sut.getByTestId('button-submit') as HTMLButtonElement
-    const inputEmail = sut.getByTestId('input-email')
-    const inputPassword = sut.getByTestId('input-password')
     const inputEmailStatus = sut.getByTestId('input-email-status')
     const inputPasswordStatus = sut.getByTestId('input-password-status')
 
     // then
     expect(errorWrapper.childElementCount).toBe(0)
     expect(submitButton.disabled).toBe(true)
-    expect(inputEmail.title).toBe('Campo obrigatório')
+    expect(inputEmailStatus.title).toBe(validationSpy.errorMessage)
     expect(inputEmailStatus.textContent).toBe('🔴')
-    expect(inputPassword.title).toBe('Campo obrigatório')
+    expect(inputPasswordStatus.title).toBe('Campo obrigatório')
     expect(inputPasswordStatus.textContent).toBe('🔴')
   })
 
@@ -77,5 +77,24 @@ describe('Login Container', () => {
     // then
     expect(validationSpy.fieldName).toBe('password')
     expect(validationSpy.fieldValue).toBe(password)
+  })
+
+  test('should show email error if Validation fails', () => {
+    // given
+    const { sut, validationSpy } = makeSut()
+    const email = faker.internet.email()
+    const emailInput = sut.getByTestId('input-email')
+    const inputEmailStatus = sut.getByTestId('input-email-status')
+
+    // when
+    fireEvent.input(emailInput, {
+      target: {
+        value: email
+      }
+    })
+
+    // then
+    expect(inputEmailStatus.title).toBe(validationSpy.errorMessage)
+    expect(inputEmailStatus.textContent).toBe('🔴')
   })
 })
