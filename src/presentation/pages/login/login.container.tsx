@@ -12,21 +12,16 @@ const LoginContainer: React.FC<Props> = ({ validation }: Props) => {
     isLoading: false,
     email: '',
     password: '',
-    error: {
-      email: {
-        error: 'Campo obrigatório',
-        message: ''
-      },
-      password: {
-        error: 'Campo obrigatório',
-        message: ''
-      },
-      defaultMessage: ''
-    }
+    emailError: 'Campo obrigatório',
+    passwordError: 'Campo obrigatório',
+    mainError: ''
   })
 
   useEffect(() => {
-    validation.validate('email', state.email)
+    setState({
+      ...state,
+      emailError: validation.validate('email', state.email)
+    })
   }, [state.email])
 
   useEffect(() => {

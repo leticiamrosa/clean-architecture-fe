@@ -6,10 +6,10 @@ import Styles from './error.styles.scss'
 
 const Error: React.FC = () => {
   const { state } = useContext(Context)
-  const { isLoading, error } = state
+  const { isLoading, mainError } = state
 
   const hasLoading = isLoading && <Spinner className={Styles.spinner}/>
-  const hasError = error.defaultMessage && <span className={Styles.error}>{error.defaultMessage}</span>
+  const hasError = mainError && <span className={Styles.error}>{mainError}</span>
 
   return (
     <div data-testid="error-wrapper" className={Styles.errorWrapper}>

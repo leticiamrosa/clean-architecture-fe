@@ -6,7 +6,7 @@ type Props = React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>
 
 const InputText: React.FC<Props> = (props: Props) => {
   const { state, setState } = useContext(Context)
-  const { error } = state.error[props.name]
+  const error = state[`${props.name}Error`]
 
   const onFocus = (event: React.FocusEvent<HTMLInputElement>): void => {
     event.target.readOnly = false
@@ -29,8 +29,8 @@ const InputText: React.FC<Props> = (props: Props) => {
 
   return (
     <div className={Styles.inputWrapper}>
-      <input data-testid={`input-${props.name}`} readOnly onFocus={onFocus} title={getTitle()} onChange={handleChange} {...props}/>
-      <span data-testid={`input-${props.name}-status`} className={Styles.status}>
+      <input data-testid={`input-${props.name}`} readOnly onFocus={onFocus} onChange={handleChange} {...props}/>
+      <span data-testid={`input-${props.name}-status`} className={Styles.status} title={getTitle()}>
         {getStatus()}
       </span>
     </div>
