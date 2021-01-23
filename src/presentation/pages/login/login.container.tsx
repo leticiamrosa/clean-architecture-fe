@@ -4,7 +4,7 @@ import Context from '@components/contexts/form-context/form-context'
 import Validation from '@presentation/protocols/validation'
 
 type Props = {
-  validation: Validation
+  validation?: Validation
 };
 
 const LoginContainer: React.FC<Props> = ({ validation }: Props) => {
@@ -25,9 +25,14 @@ const LoginContainer: React.FC<Props> = ({ validation }: Props) => {
     })
   }, [state.email, state.password])
 
+  const isValid = !!state.emailError || !!state.passwordError
+
   return (
     <Context.Provider value={{ state, setState }}>
-      <Login />
+      <Login
+        isValid={isValid}
+        isLoading={state.isLoading}
+      />
     </Context.Provider>
   )
 }
