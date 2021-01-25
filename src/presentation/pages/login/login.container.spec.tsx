@@ -266,6 +266,8 @@ describe('Login Container', () => {
 
       // then
       expect(localStorage.setItem).toHaveBeenCalledWith('accessToken', accessToken)
+      expect(history.length).toBe(1)
+      expect(history.location.pathname).toBe('/')
     })
   })
 
