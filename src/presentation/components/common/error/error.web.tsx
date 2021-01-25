@@ -9,7 +9,7 @@ const Error: React.FC = () => {
   const { isLoading, mainError } = state
 
   const hasLoading = isLoading && <Spinner className={Styles.spinner}/>
-  const hasError = mainError && <span className={Styles.error}>{mainError}</span>
+  const hasError = mainError && <span data-testid="main-error" className={Styles.error}>{mainError}</span>
 
   return (
     <div data-testid="error-wrapper" className={Styles.errorWrapper}>
