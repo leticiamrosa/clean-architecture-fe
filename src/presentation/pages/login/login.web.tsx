@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import {
   Footer,
   HeaderLogin,
@@ -26,7 +27,7 @@ const Login: React.FC<Props> = ({
         <InputText data-testid="input-email" type="email" name="email" placeholder="Digite seu e-mail"/>
         <InputText data-testid="input-password" type="password" name="password" placeholder="Digite sua senha"/>
         <button data-testid="button-submit" disabled={isValid} className={Styles.submit} type="submit">Enviar</button>
-        <span className={Styles.link}>Criar conta</span>
+        <Link data-testid="link-signup" to="/signup" className={Styles.link}>Criar conta</Link>
         <Error />
       </form>
 
