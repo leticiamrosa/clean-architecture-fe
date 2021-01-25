@@ -15,7 +15,11 @@
       "paths": {
         "@domain/*": ["./src/domain/*"],
         "@data/*": ["./src/data/*"],
-        "@infra/*": ["./src/infra/*"]
+        "@infra/*": ["./src/infra/*"],
+        "@presentation/*": ["./src/presentation/*"],
+        "@components/*": ["./src/presentation/components/*"],
+        "@styles/*": ["./src/presentation/styles/*"],
+        "@main/*": ["./src/main/*"]
       },
       "allowJs": true,
       "resolveJsonModule": true

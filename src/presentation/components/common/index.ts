@@ -1,0 +1,5 @@
+export { default as HeaderLogin } from './header/header-login/header-login.web'
+export { default as Spinner } from './spinner/spinner.web'
+export { default as InputText } from './input/input-text/input-text.web'
+export { default as Footer } from './footer/footer.web'
+export { default as Error } from './error/error.web'
