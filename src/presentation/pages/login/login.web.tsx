@@ -21,7 +21,7 @@ const Login: React.FC<Props> = ({
 
       <HeaderLogin />
 
-      <form className={Styles.form} onSubmit={(e) => handleSubmit(e)}>
+      <form data-testid="form" className={Styles.form} onSubmit={handleSubmit}>
         <h2>Login</h2>
         <InputText data-testid="input-email" type="email" name="email" placeholder="Digite seu e-mail"/>
         <InputText data-testid="input-password" type="password" name="password" placeholder="Digite sua senha"/>
