@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { useHistory } from 'react-router-dom'
 import Login from './login.web'
 import Context from '@components/contexts/form-context/form-context'
 import { Authentication } from '@domain/usecases'
@@ -10,6 +11,8 @@ type Props = {
 };
 
 const LoginContainer: React.FC<Props> = ({ validation, authentication }: Props) => {
+  const history = useHistory()
+
   const [state, setState] = useState({
     isLoading: false,
     email: '',
@@ -47,6 +50,7 @@ const LoginContainer: React.FC<Props> = ({ validation, authentication }: Props) 
       })
 
       localStorage.setItem('accessToken', account.accessToken)
+      history.replace('/')
     } catch (error) {
       setState({
         ...state,
