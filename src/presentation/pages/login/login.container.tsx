@@ -30,6 +30,10 @@ const LoginContainer: React.FC<Props> = ({ validation, authentication }: Props) 
   const isValid = !!state.emailError || !!state.passwordError
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
+    if (state.isLoading) {
+      return
+    }
+
     event.preventDefault()
     setState({
       ...state,
