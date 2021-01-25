@@ -199,5 +199,16 @@ describe('Login Container', () => {
         password
       })
     })
+
+    test('should call Authentication only once', () => {
+      const { sut, authenticationSpy } = makeSut()
+
+      // when
+      simulateValidSubmit(sut)
+      simulateValidSubmit(sut)
+
+      // then
+      expect(authenticationSpy.callsCount).toBe(1)
+    })
   })
 })
