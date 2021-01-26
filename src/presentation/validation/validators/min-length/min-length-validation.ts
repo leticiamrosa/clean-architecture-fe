@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars-experimental */
 import { InvalidFieldError } from '@presentation/validation/errors'
 import { FieldValidation } from '@presentation/validation/protocols/field-validation'
 
@@ -9,6 +8,7 @@ export class MinLengthValidation implements FieldValidation {
   ) {}
 
   validate (value: string): Error {
-    return new InvalidFieldError()
+    const isValid = value.length >= this.minLength
+    return isValid ? null : new InvalidFieldError()
   }
 }
