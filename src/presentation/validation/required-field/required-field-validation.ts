@@ -2,12 +2,9 @@ import { FieldValidation } from '@presentation/validation/protocols/field-valida
 import { RequiredFieldError } from '@presentation/validation/errors'
 
 export class RequiredFieldValidation implements FieldValidation {
-  value: string
-
   constructor (readonly field: string) {}
 
   validate (value: string): Error {
-    this.value = value
-    return new RequiredFieldError()
+    return value ? null : new RequiredFieldError()
   }
 };
