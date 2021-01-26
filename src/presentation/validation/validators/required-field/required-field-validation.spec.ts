@@ -1,4 +1,4 @@
-import { RequiredFieldValidation } from '@presentation/validation/required-field/required-field-validation'
+import { RequiredFieldValidation } from '@presentation/validation/validators/required-field/required-field-validation'
 import { RequiredFieldError } from '@presentation/validation/errors'
 import faker from 'faker'
 
