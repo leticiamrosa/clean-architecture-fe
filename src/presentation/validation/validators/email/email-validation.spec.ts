@@ -8,9 +8,10 @@ describe('EmailValidation', () => {
   test('should return error when the email is invalid', () => {
     // given
     const sut = makeSut()
+    const email = faker.random.word()
 
     // when
-    const error = sut.validate('')
+    const error = sut.validate(email)
 
     // expect
     expect(error).toEqual(new InvalidFieldError())
@@ -22,6 +23,17 @@ describe('EmailValidation', () => {
 
     // when
     const error = sut.validate(faker.internet.email())
+
+    // expect
+    expect(error).toBeFalsy()
+  })
+
+  test('should return falsy when the email is emply', () => {
+    // given
+    const sut = makeSut()
+
+    // when
+    const error = sut.validate('')
 
     // expect
     expect(error).toBeFalsy()
