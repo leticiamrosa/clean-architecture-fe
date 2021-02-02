@@ -7,14 +7,16 @@ import {
 import {
   ValidationBuilder as sut
 } from './validation-builder'
+import faker from 'faker'
 
 describe('ValidationBuilder', () => {
   test('should return RequiredFieldValidation', () => {
     // given
-    const expectedErrorField = new RequiredFieldValidation('any_field')
+    const field = faker.database.column()
+    const expectedErrorField = new RequiredFieldValidation(field)
 
     // when
-    const validations = sut.field('any_field').required().build()
+    const validations = sut.field(field).required().build()
 
     // then
     expect(validations).toEqual([expectedErrorField])
@@ -22,10 +24,11 @@ describe('ValidationBuilder', () => {
 
   test('should return EmailValidation', () => {
     // given
-    const expectedErrorField = new EmailValidation('any_field')
+    const field = faker.database.column()
+    const expectedErrorField = new EmailValidation(field)
 
     // when
-    const validations = sut.field('any_field').email().build()
+    const validations = sut.field(field).email().build()
 
     // then
     expect(validations).toEqual([expectedErrorField])
@@ -33,12 +36,34 @@ describe('ValidationBuilder', () => {
 
   test('should return MinLengthValidation', () => {
     // given
-    const expectedErrorField = new MinLengthValidation('any_field', 5)
+    const field = faker.database.column()
+    const minLength = faker.random.number()
+    const expectedErrorField = new MinLengthValidation(field, minLength)
 
     // when
-    const validations = sut.field('any_field').min(5).build()
+    const validations = sut.field(field).min(minLength).build()
 
     // then
     expect(validations).toEqual([expectedErrorField])
+  })
+
+  test('should return a list of validations', () => {
+    // given
+    const field = faker.database.column()
+    const minLength = faker.random.number()
+    const requiredFieldValidation = new RequiredFieldValidation(field)
+    const emailValidation = new EmailValidation(field)
+    const minValidation = new MinLengthValidation(field, minLength)
+    const expectedValidations = [
+      requiredFieldValidation,
+      minValidation,
+      emailValidation
+    ]
+
+    // when
+    const validations = sut.field(field).required().min(minLength).email().build()
+
+    // then
+    expect(validations).toEqual(expectedValidations)
   })
 })
