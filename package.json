@@ -1,7 +1,7 @@
 {
   "name": "clean-react",
   "version": "1.0.0",
-  "description": "",
+  "description": "NodeJs Rest API using TDD, Clean Architecture and Typescript",
   "main": "index.js",
   "scripts": {
     "dev:base": "webpack-dev-server --config webpack.dev.js",
