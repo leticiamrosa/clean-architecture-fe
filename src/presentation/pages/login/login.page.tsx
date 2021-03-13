@@ -6,7 +6,7 @@ import LoginContainer from './login.container'
 type Props = {
   validation?: Validation
   authentication?: Authentication
-};
+}
 
 const LoginPage: React.FC<Props> = (props: Props) => {
   return (

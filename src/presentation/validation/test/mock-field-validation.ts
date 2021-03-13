@@ -2,7 +2,7 @@ import { FieldValidation } from '@presentation/validation/protocols/field-valida
 
 export class FieldValidationSpy implements FieldValidation {
   error: Error = null
-  value: string;
+  value: string
 
   constructor (readonly field: string) {}
 

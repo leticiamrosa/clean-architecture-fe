@@ -3,5 +3,5 @@ declare module '*.scss' {
     [className: string]: string
   }
 
-  export = content;
+  export = content
 }

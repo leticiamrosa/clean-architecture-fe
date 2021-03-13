@@ -8,7 +8,7 @@ import Validation from '@presentation/protocols/validation'
 type Props = {
   validation?: Validation
   authentication?: Authentication
-};
+}
 
 const LoginContainer: React.FC<Props> = ({ validation, authentication }: Props) => {
   const history = useHistory()
