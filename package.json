@@ -1,7 +1,7 @@
 {
   "name": "clean-react",
   "version": "1.0.0",
-  "description": "NodeJs Rest API using TDD, Clean Architecture and Typescript",
+  "description": "NodeJs Rest API using TDD, Clean Achitecture and Typescript",
   "main": "index.js",
   "scripts": {
     "dev:base": "webpack-dev-server --config webpack.dev.js",
@@ -9,7 +9,8 @@
     "test": "jest --passWithNoTests --no-cache --runInBand",
     "test:watch": "yarn test --watch",
     "test:staged": "yarn test --findRelatedTests",
-    "test:ci": "yarn test --coverage"
+    "test:ci": "yarn test --coverage",
+    "lint": "eslint 'src/**' --fix"
   },
   "keywords": [],
   "author": "leticiamrosa",
