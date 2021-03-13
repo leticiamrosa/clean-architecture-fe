@@ -1,6 +1,8 @@
 language: node_js
 node_js:
   - 12
+install:
+  - yarn
 script:
   - eslint 'src/**'
-  - npm run test:ci
+  - yarn run test:ci
