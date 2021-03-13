@@ -5,7 +5,7 @@ import InputText from './input-text.web'
 import Context from '@presentation/contexts/form-context/form-context'
 
 const makeSut = (
-  fieldName
+  fieldName: string
 ): RenderResult => {
   return render(
     <Context.Provider value={{ state: {} }}>
