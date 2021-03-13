@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import Login from './login.web'
-import Context from '@components/contexts/form-context/form-context'
+import Context from '@presentation/contexts/form-context/form-context'
 import { Authentication } from '@domain/usecases'
 import Validation from '@presentation/protocols/validation'
 
