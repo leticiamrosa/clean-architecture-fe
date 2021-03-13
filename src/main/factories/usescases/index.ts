@@ -1,1 +1,1 @@
-export * from './authentication/remote-authenticaation-factory'
+export * from './authentication/remote-authentication-factory'
