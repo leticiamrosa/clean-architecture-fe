@@ -1,6 +1,6 @@
 
-[![Build Status](https://travis-ci.com/leticiamrosa/clean-react.svg?branch=main)](https://travis-ci.com/leticiamrosa/clean-react)
-
+[![Build Status](https://travis-ci.com/leticiamrosa/clean-architecture-fe.svg?branch=main)](https://travis-ci.com/leticiamrosa/clean-architecture-fe)
+[![Coverage Status](https://coveralls.io/repos/github/leticiamrosa/clean-architecture-fe/badge.svg?branch=main)](https://coveralls.io/github/leticiamrosa/clean-architecture-fe?branch=main)
  
 >  ## Principles
 
