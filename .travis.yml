@@ -5,4 +5,4 @@ install:
   - yarn
 script:
   - eslint 'src/**'
-  - yarn run test:ci
+  - yarn test:coveralls
