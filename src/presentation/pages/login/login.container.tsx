@@ -2,15 +2,20 @@ import React, { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import Login from './login.web'
 import Context from '@presentation/contexts/form-context/form-context'
-import { Authentication } from '@domain/usecases'
+import { Authentication, SaveAccessToken } from '@domain/usecases'
 import Validation from '@presentation/protocols/validation'
 
 type Props = {
   validation?: Validation
   authentication?: Authentication
+  saveAccessToken: SaveAccessToken
 }
 
-const LoginContainer: React.FC<Props> = ({ validation, authentication }: Props) => {
+const LoginContainer: React.FC<Props> = ({
+  validation,
+  authentication,
+  saveAccessToken
+}: Props) => {
   const history = useHistory()
 
   const [state, setState] = useState({
@@ -49,7 +54,8 @@ const LoginContainer: React.FC<Props> = ({ validation, authentication }: Props) 
         password: state.password
       })
 
-      localStorage.setItem('accessToken', account.accessToken)
+      await saveAccessToken.save(account.accessToken)
+
       history.replace('/')
     } catch (error) {
       setState({
