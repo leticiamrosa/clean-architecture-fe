@@ -258,7 +258,7 @@ describe('Login Container', () => {
       expect(errorWrapper.childElementCount).toBe(1)
     })
 
-    test('should add accessToken to SaveAccessToken on success', async () => {
+    test('should call SaveAccessToken on success', async () => {
       // given
       const { sut, authenticationSpy, saveAccessTokenMock } = makeSut()
       const accessToken = authenticationSpy.account.accessToken
@@ -270,6 +270,24 @@ describe('Login Container', () => {
       expect(saveAccessTokenMock.accessToken).toBe(accessToken)
       expect(history.length).toBe(1)
       expect(history.location.pathname).toBe('/')
+    })
+
+    test('should present error when SaveAccessToken fails', async () => {
+      // given
+      const { sut, saveAccessTokenMock } = makeSut()
+      const error = new InvalidCredentialsError()
+      const errorWrapper = sut.getByTestId('error-wrapper')
+
+      // when
+      jest.spyOn(saveAccessTokenMock, 'save')
+        .mockReturnValueOnce(Promise.reject(error))
+
+      await simulateValidSubmit(sut)
+      const mainError = sut.getByTestId('main-error')
+
+      // then
+      expect(mainError.textContent).toBe(error.message)
+      expect(errorWrapper.childElementCount).toBe(1)
     })
   })
 
