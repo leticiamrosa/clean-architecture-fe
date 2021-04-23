@@ -4,7 +4,7 @@
   "description": "NodeJs Rest API using TDD, Clean Achitecture and Typescript",
   "main": "index.js",
   "scripts": {
-    "dev:base": "webpack-dev-server --config webpack.dev.js",
+    "dev:base": "webpack serve --config webpack.dev.js",
     "dev": "yarn dev:base --open",
     "test": "jest --passWithNoTests --no-cache --runInBand",
     "test:watch": "yarn test --watch",
