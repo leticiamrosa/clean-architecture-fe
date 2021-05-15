@@ -1,6 +1,6 @@
 {
   "*.{ts,tsx}": [
-    "yarn lint",
-    "yarn test:ci"
+    "eslint 'src/**' --fix",
+    "yarn test --coverage"
   ]
 }
