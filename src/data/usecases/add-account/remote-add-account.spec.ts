@@ -4,7 +4,7 @@ import { HttpStatusCode } from '@data/protocols/http'
 import { AddAccountParams } from '@domain/usecases'
 import { AccountModel } from '@domain/models'
 import { mockAddAccountParams } from '@domain/test'
-import { EmailInUseError } from '@domain/errors'
+import { EmailInUseError, UnexpectedError } from '@domain/errors'
 
 import faker from 'faker'
 
@@ -60,6 +60,6 @@ describe('RemoteAddAccount', (): void => {
     const promise = sut.add(mockAddAccountParams())
 
     // then
-    await expect(promise).rejects.toThrow(new EmailInUseError())
+    await expect(promise).rejects.toThrow(new UnexpectedError())
   })
 })
