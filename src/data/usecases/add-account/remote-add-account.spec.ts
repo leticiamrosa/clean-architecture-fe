@@ -4,7 +4,7 @@ import { HttpStatusCode } from '@data/protocols/http'
 import { AddAccountParams } from '@domain/usecases'
 import { AccountModel } from '@domain/models'
 import { mockAddAccountParams } from '@domain/test'
-import { EmailInUseError, UnexpectedError } from '@domain/errors'
+import { UnexpectedError } from '@domain/errors'
 
 import faker from 'faker'
 
